@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = prompt('введите число от 0 до 999');
+        var a2 =[]; a1 ={}
+        if (a > 999) {
+            console.log('ошибка');
+        } else { i = 0;
+                while(i < 3) {
+                    a2[i] = (a%10);
+                    a = (a-a%10)/10;
+                    i++;
+                }
+                a1['Единицы'] = a2[0];
+                a1['Десятки'] = a2[1];
+                a1['Сотни'] = a2[2];
+            
+        }
+        console.log(a1);
+    </script>
+</body>
+</html>
