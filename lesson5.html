@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+  function startScript() {
+			var pasteResult = document.getElementById('pasteResult'),
+				pasteTd,
+				white = [
+					['&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;'],
+					['&#9814;', '&#9816;', '&#9815;', '&#9813;', '&#9812;', '&#9815;', '&#9816;', '&#9814;']
+				],
+				black = [
+					['&#9820;', '&#9822;', '&#9821;', '&#9819;', '&#9818;', '&#9821;', '&#9822;', '&#9820;'],
+					['&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;']
+				];
+			var boardTable = document.createElement('table');
+  			pasteResult.appendChild(boardTable);
+  			for (let row = 1; row <= 10; row++) {
+				var boardTr = document.createElement('tr');
+	  			boardTable.appendChild(boardTr);
+	  			for (let col = 1; col <= 10; col++) {
+					var boardTd = document.createElement('td');
+					pasteTd = '';
+					if (row > 1 && row < 10 && (col == 1 || col == 10)) {
+						boardTd.className = 'boardNumbers';
+						pasteTd+= 8 - row + 2;
+					}
+					if (col > 1 && col < 10) {
+						if (((row%2 != 0 && col%2 == 0) || (row%2 == 0 && col%2 != 0)) && (row > 1 && row < 10)) {
+							boardTd.style.background = 'grey';
+						}
+						if (row == 1 || row == 10) {
+							boardTd.className = 'boardLetters';
+							pasteTd+= '&#' + (65 + col - 2);
+						}
+						if (row == 8 || row == 9) {
+							boardTd.className = 'boardFigures';
+							pasteTd+= white[row-8][col-2];
+						}
+						if (row == 2 || row == 3) {
+							boardTd.className = 'boardFigures';
+							pasteTd+= black[row-2][col-2];
+						}
+					}
+					boardTd.innerHTML = pasteTd;
+					boardTr.appendChild(boardTd);
+	  			}
+  			}
+		}
+
+    </script>
+
+    <div id="textTask">
+        <p>
+            <a href="javascript:void(0);" onclick="startScript();">Шахматная доска</a>
+        </p>
+
+    </div>
+
+    <div id="pasteResult">
+    </div>
+
+</body>
+
+</html>
